@@ -1,12 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
-import {
-  motion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-  type Variants,
-} from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue, Variants } from 'framer-motion';
 
 // ===== K-WHALE CONSTANTS (MARKETING COPY) =====
 const NAV_ITEMS = [
@@ -60,7 +54,7 @@ const WHO_LIST = [
   },
 ];
 
-// ===== ANIMATIONS (TS SAFE) =====
+// ===== ANIMATIONS (typed) =====
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: {
@@ -68,7 +62,7 @@ const fadeUp: Variants = {
     y: 0,
     transition: {
       duration: 0.6,
-      // ease: 'easeOut', // ← 이거 넣으면 타입이랑 가끔 안맞음
+      ease: [0.22, 1, 0.36, 1], // cubic-bezier
     },
   },
 };
@@ -96,7 +90,7 @@ function KWHeader() {
         <div className="flex items-center gap-3">
           <div className="relative">
             <div className="w-10 h-10 rounded-xl overflow-hidden bg-slate-900 flex items-center justify-center shadow-[0_0_30px_rgba(0,194,255,0.4)]">
-              {/* ✅ icon.png 로고로 교체 */}
+              {/* ✅ public/logo.png 기준 */}
               <img
                 src="/logo.png"
                 alt="K-Whale"
