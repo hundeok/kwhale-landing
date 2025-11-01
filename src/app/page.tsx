@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue, Variants } from 'framer-motion';
+import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
 
 // ===== K-WHALE CONSTANTS (MARKETING COPY) =====
 const NAV_ITEMS = [
@@ -54,29 +54,6 @@ const WHO_LIST = [
   },
 ];
 
-// ===== ANIMATIONS (typed) =====
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1], // cubic-bezier
-    },
-  },
-};
-
-const stagger: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
 // ===== HEADER =====
 function KWHeader() {
   return (
@@ -85,12 +62,13 @@ function KWHeader() {
       style={{ background: 'rgba(10, 29, 61, 0.45)' }}
       initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: [0.33, 1, 0.68, 1] }}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0 flex items-center justify-between h-16">
         <div className="flex items-center gap-3">
           <div className="relative">
             <div className="w-10 h-10 rounded-xl overflow-hidden bg-slate-900 flex items-center justify-center shadow-[0_0_30px_rgba(0,194,255,0.4)]">
-              {/* ✅ public/logo.png 기준 */}
+              {/* public/logo.png 기준 */}
               <img
                 src="/logo.png"
                 alt="K-Whale"
@@ -145,7 +123,8 @@ function KWHero({
           <motion.p
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/40 text-cyan-100 text-xs mb-5"
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 0.1 } }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: 0.1, ease: [0.33, 1, 0.68, 1] }}
           >
             네이비톤 인텔리전스 대시보드
             <span className="opacity-50">·</span>
@@ -154,7 +133,8 @@ function KWHero({
           <motion.h1
             className="text-4xl md:text-5xl lg:text-[3.35rem] font-bold leading-tight text-slate-50"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 0.15 } }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.15, ease: [0.33, 1, 0.68, 1] }}
           >
             예금·증권·코인·토지·건물은
             <br />
@@ -165,8 +145,9 @@ function KWHero({
           </motion.h1>
           <motion.p
             className="text-slate-200/75 mt-6 text-base md:text-lg leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { delay: 0.25 } }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.25, ease: [0.33, 1, 0.68, 1] }}
           >
             어디서 온 데이터든 한 번만 규격화하면 앱 · 웹 · 사내 대시보드 어디에 꽂아도 똑같이 보입니다.
             <br />
@@ -175,7 +156,8 @@ function KWHero({
           <motion.div
             className="mt-8 flex flex-wrap gap-4"
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 0.35 } }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.35, ease: [0.33, 1, 0.68, 1] }}
           >
             <button className="px-5 py-2.5 rounded-lg bg-cyan-400 text-slate-950 font-semibold shadow-[0_18px_35px_rgba(0,194,255,0.35)] hover:brightness-110 transition">
               라이브 데모 보기
@@ -190,7 +172,8 @@ function KWHero({
         <motion.div
           className="relative bg-slate-950/30 border border-cyan-400/10 rounded-2xl p-5 backdrop-blur-xl shadow-[0_24px_80px_rgba(0,0,0,0.2)]"
           initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0, transition: { delay: 0.25 } }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, delay: 0.25, ease: [0.33, 1, 0.68, 1] }}
         >
           <p className="text-xs uppercase tracking-wide text-slate-200/40 mb-3">
             현재 샘플 번들 총액
@@ -221,12 +204,12 @@ function KWHero({
       <motion.div
         className="absolute -top-24 -right-10 w-64 h-64 bg-cyan-400/20 blur-3xl rounded-full"
         animate={{ y: [0, 25, 0] }}
-        transition={{ duration: 7, repeat: Infinity }}
+        transition={{ duration: 7, repeat: Infinity, ease: [0.33, 1, 0.68, 1] }}
       />
       <motion.div
         className="absolute -bottom-10 left-10 w-56 h-56 bg-teal-500/10 blur-3xl rounded-full"
         animate={{ y: [0, -25, 0] }}
-        transition={{ duration: 5, repeat: Infinity }}
+        transition={{ duration: 5, repeat: Infinity, ease: [0.33, 1, 0.68, 1] }}
       />
     </motion.section>
   );
@@ -237,7 +220,12 @@ function KWDataModel() {
   return (
     <section id="model" className="py-20 relative">
       <div className="max-w-6xl mx-auto px-4 lg:px-0">
-        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-50 mb-3">
             데이터는 4단계로만 흘러갑니다
           </h2>
@@ -248,17 +236,15 @@ function KWDataModel() {
             이걸 고정해두면 “여긴 왜 코인이 안 나와요?” 같은 질문이 아예 없어집니다.
           </p>
         </motion.div>
-        <motion.div
-          className="grid md:grid-cols-4 gap-6"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
-        >
+
+        <div className="grid md:grid-cols-4 gap-6">
           {/* 1) Raw/Ingest */}
           <motion.div
-            variants={fadeUp}
             className="rounded-2xl bg-slate-950/30 border border-cyan-500/10 p-5 backdrop-blur-md"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.05, ease: [0.33, 1, 0.68, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
           >
             <p className="text-xs text-cyan-200/60 mb-2">1단계 · 원본 수집</p>
             <h3 className="text-slate-50 font-semibold mb-4">assets.json</h3>
@@ -271,8 +257,11 @@ function KWDataModel() {
           </motion.div>
           {/* 2) Core Entity */}
           <motion.div
-            variants={fadeUp}
             className="rounded-2xl bg-slate-950/30 border border-cyan-500/10 p-5 backdrop-blur-md"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.1, ease: [0.33, 1, 0.68, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
           >
             <p className="text-xs text-cyan-200/60 mb-2">2단계 · 표준화</p>
             <h3 className="text-slate-50 font-semibold mb-4">K-Whale 스키마</h3>
@@ -285,8 +274,11 @@ function KWDataModel() {
           </motion.div>
           {/* 3) Derived/Materialized */}
           <motion.div
-            variants={fadeUp}
             className="rounded-2xl bg-slate-950/30 border border-cyan-500/10 p-5 backdrop-blur-md"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.15, ease: [0.33, 1, 0.68, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
           >
             <p className="text-xs text-cyan-200/60 mb-2">3단계 · 화면용 집계</p>
             <h3 className="text-slate-50 font-semibold mb-4">지역·종목·인물</h3>
@@ -301,8 +293,11 @@ function KWDataModel() {
           </motion.div>
           {/* 4) Presentation */}
           <motion.div
-            variants={fadeUp}
             className="rounded-2xl bg-slate-950/30 border border-cyan-500/10 p-5 backdrop-blur-md"
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.2, ease: [0.33, 1, 0.68, 1] }}
+            viewport={{ once: true, margin: '-80px' }}
           >
             <p className="text-xs text-cyan-200/60 mb-2">4단계 · 대시보드 노출</p>
             <h3 className="text-slate-50 font-semibold mb-4">Executive View</h3>
@@ -313,7 +308,7 @@ function KWDataModel() {
               {`{ totalPersons, totalAssets, byCategory[] }`}
             </pre>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -324,7 +319,12 @@ function KWScreens() {
   return (
     <section id="screens" className="py-20 relative">
       <div className="max-w-6xl mx-auto px-4 lg:px-0">
-        <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.33, 1, 0.68, 1] }}
+          viewport={{ once: true }}
+        >
           <div className="flex items-center justify-between gap-4 mb-7">
             <div>
               <h2 className="text-3xl font-bold text-slate-50 mb-2">화면 구성</h2>
@@ -339,18 +339,15 @@ function KWScreens() {
           </div>
         </motion.div>
 
-        <motion.div
-          className="grid md:grid-cols-2 gap-6"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          {SCREEN_CARDS.map((sc) => (
+        <div className="grid md:grid-cols-2 gap-6">
+          {SCREEN_CARDS.map((sc, idx) => (
             <motion.div
               key={sc.title}
-              variants={fadeUp}
               className="rounded-2xl bg-slate-950/20 border border-cyan-500/10 p-6 backdrop-blur-md hover:border-cyan-400/40 transition group"
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.05 * idx, ease: [0.33, 1, 0.68, 1] }}
+              viewport={{ once: true, margin: '-80px' }}
             >
               <p className="text-cyan-100/70 text-xs mb-2">{sc.title}</p>
               <p className="text-slate-50 font-semibold mb-3">{sc.desc}</p>
@@ -363,7 +360,7 @@ function KWScreens() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -376,31 +373,28 @@ function KWWho() {
       <div className="max-w-6xl mx-auto px-4 lg:px-0">
         <motion.h2
           className="text-3xl font-bold text-slate-50 mb-8"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.33, 1, 0.68, 1] }}
           viewport={{ once: true }}
         >
           이런 분들이 바로 가져다 씁니다
         </motion.h2>
-        <motion.div
-          className="grid md:grid-cols-3 gap-6"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-60px' }}
-        >
-          {WHO_LIST.map((w) => (
+        <div className="grid md:grid-cols-3 gap-6">
+          {WHO_LIST.map((w, idx) => (
             <motion.div
               key={w.title}
-              variants={fadeUp}
               className="rounded-2xl bg-slate-950/20 border border-cyan-500/10 p-5 backdrop-blur-md"
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.05 * idx, ease: [0.33, 1, 0.68, 1] }}
+              viewport={{ once: true, margin: '-60px' }}
             >
               <p className="text-cyan-100/75 text-sm mb-2">{w.title}</p>
               <p className="text-slate-200/70 text-sm leading-relaxed">{w.desc}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -413,9 +407,9 @@ function KWCTA() {
       <div className="max-w-6xl mx-auto px-4 lg:px-0">
         <motion.div
           className="rounded-3xl bg-gradient-to-br from-cyan-500/15 via-slate-950/20 to-slate-950/0 border border-cyan-400/15 p-10 backdrop-blur-lg"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: [0.33, 1, 0.68, 1] }}
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-50 mb-4">
