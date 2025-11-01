@@ -170,7 +170,7 @@ function Header() {
   );
 }
 
-function HeroSection({ heroScale, heroOpacity }) {
+function HeroSection({ heroScale, heroOpacity }: { heroScale: any; heroOpacity: any }) {
   return (
     <motion.section 
       id="overview"
