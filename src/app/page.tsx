@@ -466,7 +466,7 @@ function Footer() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center text-slate-400">
-          <p className="mb-2">&copy; 2025 K-Whale Intelligence. All rights reserved.</p>
+          <p className="mb-2">&copy; 2025 K-Whale. All rights reserved.</p>
           <p className="text-slate-500 text-sm mb-4">
             예금·증권·코인·부동산·차량·채무를 하나의 기준으로. 어디에 꽂아도 같은 모양으로.
           </p>
