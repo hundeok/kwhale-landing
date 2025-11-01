@@ -1,6 +1,12 @@
 'use client';
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+  type Variants,
+} from 'framer-motion';
 
 // ===== K-WHALE CONSTANTS (MARKETING COPY) =====
 const NAV_ITEMS = [
@@ -54,15 +60,27 @@ const WHO_LIST = [
   },
 ];
 
-// ===== ANIMATIONS =====
-const fadeUp = {
+// ===== ANIMATIONS (TS SAFE) =====
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      // ease: 'easeOut', // ← 이거 넣으면 타입이랑 가끔 안맞음
+    },
+  },
 };
 
-const stagger = {
+const stagger: Variants = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
 };
 
 // ===== HEADER =====
