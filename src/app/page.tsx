@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 // ===== K-WHALE CONSTANTS (MARKETING COPY) =====
 const NAV_ITEMS = [
@@ -77,8 +77,13 @@ function KWHeader() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-0 flex items-center justify-between h-16">
         <div className="flex items-center gap-3">
           <div className="relative">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center shadow-[0_0_30px_rgba(0,194,255,0.4)]">
-              <span className="text-slate-950 text-lg font-extrabold tracking-tight">K</span>
+            <div className="w-10 h-10 rounded-xl overflow-hidden bg-slate-900 flex items-center justify-center shadow-[0_0_30px_rgba(0,194,255,0.4)]">
+              {/* ✅ icon.png 로고로 교체 */}
+              <img
+                src="/logo.png"
+                alt="K-Whale"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="absolute -inset-1 rounded-2xl bg-cyan-400/30 blur-xl" />
           </div>
@@ -110,7 +115,13 @@ function KWHeader() {
 }
 
 // ===== HERO =====
-function KWHero({ scale, opacity }: { scale: any; opacity: any }) {
+function KWHero({
+  scale,
+  opacity,
+}: {
+  scale: MotionValue<number>;
+  opacity: MotionValue<number>;
+}) {
   return (
     <motion.section
       id="overview"
@@ -145,8 +156,7 @@ function KWHero({ scale, opacity }: { scale: any; opacity: any }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { delay: 0.25 } }}
           >
-            어디서 온 데이터든 한 번만 규격화하면
-            앱 · 웹 · 사내 대시보드 어디에 꽂아도 똑같이 보입니다.
+            어디서 온 데이터든 한 번만 규격화하면 앱 · 웹 · 사내 대시보드 어디에 꽂아도 똑같이 보입니다.
             <br />
             공시 데이터 특유의 들쭉날쭉함을 K-Whale이 앞단에서 막아줍니다.
           </motion.p>
@@ -220,8 +230,8 @@ function KWDataModel() {
             데이터는 4단계로만 흘러갑니다
           </h2>
           <p className="text-slate-200/70 mb-8">
-            원본이 어디서 왔든 일단 ① 받아두고 → ② 우리가 쓰는 기준으로 바꾸고 → ③ 화면에서
-            바로 쓸 수 있게 집계하고 → ④ 보고서/대시보드로 뿌리는 구조예요.
+            원본이 어디서 왔든 일단 ① 받아두고 → ② 우리가 쓰는 기준으로 바꾸고 → ③ 화면에서 바로 쓸 수 있게
+            집계하고 → ④ 보고서/대시보드로 뿌리는 구조예요.
             <br />
             이걸 고정해두면 “여긴 왜 코인이 안 나와요?” 같은 질문이 아예 없어집니다.
           </p>
